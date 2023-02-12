@@ -650,6 +650,7 @@ ul.social_section_1info a {
   background: #212121;
   display: block;
   text-align: center;
+  padding-top: 10px;
   line-height: 35px;
   letter-spacing: 1px;
 }
