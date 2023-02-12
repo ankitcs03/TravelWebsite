@@ -1,0 +1,26 @@
+{% macro packageCard(image, price, info, infoBold, desc, duration)%}
+<div class="col-lg-3 col-sm-6 mb-5">
+  <div class="image-tour position-relative">
+    <img
+      src="{{url_for('static',filename='images/' + image  + '.jpg')}}"
+      alt=""
+      class="img-fluid"
+    />
+    <p><span class="fa fa-tags"></span> <span>{{ price }}&#8377;</span></p>
+  </div>
+  <div class="package-info">
+    <h6 class="mt-1">
+      <span class="fa fa-map-marker mr-2"></span>{{info}}
+    </h6>
+    <h5 class="my-2">{{infoBold}}</h5>
+    <p class="">{{desc}}</p>
+    <ul class="listing mt-3">
+      <li>
+        <span class="fa fa-clock-o mr-2"></span>Duration :
+        <span>{{duration}}</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+{% endmacro %}
