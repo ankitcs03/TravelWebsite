@@ -1,160 +1,54 @@
 {% import "packageCard.html" as package %}
+{% import "destinationCard.html" as destination %}
 {% extends "base.html" %}
-{% block title %}My Trip Goal - Packages{% endblock %}
+{% block title %}My Trip Goal - Packages {% endblock %}
 {% block content %}
-    <!-- banner -->
-    <section class="banner_inner" id="home">
-      <div class="banner_inner_overlay"></div>
-    </section>
-    <!-- //banner -->
+<!-- banner -->
+<section class="banner_inner" id="home">
+  <div class="banner_inner_overlay"></div>
+</section>
+<!-- //banner -->
 
-    <!---728x90--->
+<!---728x90--->
 
-    <!-- tour packages -->
-    <section class="packages pt-5">
-      <div class="container py-lg-4 py-sm-3">
-        <h2 class="heading text-capitalize text-center">
-          Discover our tour packages
-        </h2>
-        <p class="text mt-2 mb-5 text-center">
-          Vestibulum tellus neque, sodales vel mauris at, rhoncus finibus augue.
-          Vestibulum urna ligula, molestie at ante ut, finibus vulputate felis.
-        </p>
-        <div class="row">
-			{{ package.packageCard("p1","20","Paris, France.","Sodales vel mauris","Vestibulum tellus neque, et velit mauris at, augue.","10 Days") }}
-			{{ package.packageCard("p2","20","Paris, France.","Sodales vel mauris","Vestibulum tellus neque, et velit mauris at, augue.","10 Days") }}
-			{{ package.packageCard("p3","20","Paris, France.","Sodales vel mauris","Vestibulum tellus neque, et velit mauris at, augue.","10 Days") }}
-			{{ package.packageCard("p4","20","Paris, France.","Sodales vel mauris","Vestibulum tellus neque, et velit mauris at, augue.","10 Days") }}
+<!-- tour packages -->
+<section class="packages pt-5">
+  <div class="container py-lg-4 py-sm-3">
+    <h2 class="heading text-capitalize text-center">
+      Discover our tour packages
+    </h2>
+    <p class="text mt-2 mb-5 text-center">
+      Vestibulum tellus neque, sodales vel mauris at, rhoncus finibus augue.
+      Vestibulum urna ligula, molestie at ante ut, finibus vulputate felis.
+    </p>
+    <div class="row">
+		{% for item in packages %}
+			{{ package.packageCard( item["image"],item["price"],item["info"],item["infoBold"],item["desc"],item["duration"]) }}
+		{% endfor %}
+		{% for item in packages %}
+			{{ package.packageCard( item["image"],item["price"],item["info"],item["infoBold"],item["desc"],item["duration"]) }}
+		{% endfor %}
 
-
-			{{ package.packageCard("p1","20","Paris, France.","Sodales vel mauris","Vestibulum tellus neque, et velit mauris at, augue.","10 Days") }}
-			{{ package.packageCard("p2","20","Paris, France.","Sodales vel mauris","Vestibulum tellus neque, et velit mauris at, augue.","10 Days") }}
-			{{ package.packageCard("p3","20","Paris, France.","Sodales vel mauris","Vestibulum tellus neque, et velit mauris at, augue.","10 Days") }}
-			{{ package.packageCard("p4","20","Paris, France.","Sodales vel mauris","Vestibulum tellus neque, et velit mauris at, augue.","10 Days") }}
-
-        </div>
-      </div>
-    </section>
-    <!-- tour packages -->
-    <!---728x90--->
-    <!-- destinations -->
-    <section class="destinations py-5" id="destinations">
-      <div class="container py-xl-5 py-lg-3">
-        <h3 class="heading text-capitalize text-center">
-          Popular Destinations
-        </h3>
-        <p class="text mt-2 mb-5 text-center">
-          Vestibulum tellus neque, sodales vel mauris at, rhoncus finibus augue.
-          Vestibulum urna ligula, molestie at ante ut, finibus vulputate felis.
-        </p>
-        <div class="row inner-sec-w3layouts-w3pvt-lauinfo">
-          <div class="col-md-3 col-sm-6 col-6 destinations-grids text-center">
-            <h4 class="destination mb-3">China</h4>
-            <div class="image-position position-relative">
-              <img
-                src="{{url_for('static',filename='images/china.jpg')}}"
-                class="img-fluid"
-                alt=""
-              />
-              <div class="rating">
-                <ul>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                </ul>
-              </div>
-            </div>
-            <div class="destinations-info">
-              <div class="caption mb-lg-3">
-                <h4>China</h4>
-                <a href="{{url_for('booking')}}">Book Now</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 col-6 destinations-grids text-center">
-            <h4 class="destination mb-3">Malaysia</h4>
-            <div class="image-position position-relative">
-              <img
-                src="{{url_for('static',filename='images/malaysia.jpg')}}"
-                class="img-fluid"
-                alt=""
-              />
-              <div class="rating">
-                <ul>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                </ul>
-              </div>
-            </div>
-            <div class="destinations-info">
-              <div class="caption mb-lg-3">
-                <h4>Malaysia</h4>
-                <a href="{{url_for('booking')}}">Book Now</a>
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-md-3 col-sm-6 col-6 destinations-grids text-center mt-md-0 mt-4"
-          >
-            <h4 class="destination mb-3">Japan</h4>
-            <div class="image-position position-relative">
-              <img
-                src="{{url_for('static',filename='images/japan.jpg')}}"
-                class="img-fluid"
-                alt=""
-              />
-              <div class="rating">
-                <ul>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                </ul>
-              </div>
-            </div>
-            <div class="destinations-info">
-              <div class="caption mb-lg-3">
-                <h4>Japan</h4>
-                <a href="{{url_for('booking')}}">Book Now</a>
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-md-3 col-sm-6 col-6 destinations-grids text-center mt-md-0 mt-4"
-          >
-            <h4 class="destination mb-3">Singapore</h4>
-            <div class="image-position position-relative">
-              <img
-                src="{{url_for('static',filename='images/singapore.jpg')}}"
-                class="img-fluid"
-                alt=""
-              />
-              <div class="rating">
-                <ul>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                  <li><span class="fa fa-star"></span></li>
-                </ul>
-              </div>
-            </div>
-            <div class="destinations-info">
-              <div class="caption mb-lg-3">
-                <h4>Singapore</h4>
-                <a href="{{url_for('booking')}}">Book Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- destinations -->
-    <!---728x90--->
+    </div>
+  </div>
+</section>
+<!-- tour packages -->
+<!---728x90--->
+<!-- destinations -->
+<section class="destinations py-5" id="destinations">
+  <div class="container py-xl-5 py-lg-3">
+    <h3 class="heading text-capitalize text-center">Popular Destinations</h3>
+    <p class="text mt-2 mb-5 text-center">
+      Vestibulum tellus neque, sodales vel mauris at, rhoncus finibus augue.
+      Vestibulum urna ligula, molestie at ante ut, finibus vulputate felis.
+    </p>
+    <div class="row inner-sec-w3layouts-w3pvt-lauinfo">
+		{% for item in destinations %}
+			{{destination.destinationCard(item["place"],item["image"])}}
+		{% endfor %}
+    </div>
+  </div>
+</section>
+<!-- destinations -->
+<!---728x90--->
 {% endblock %}

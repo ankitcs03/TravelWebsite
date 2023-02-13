@@ -1,0 +1,29 @@
+{% macro destinationCard(place, image)%}
+
+      <div class="col-md-3 col-sm-6 col-6 destinations-grids text-center">
+        <h4 class="destination mb-3">{{place}}</h4>
+        <div class="image-position position-relative">
+          <img
+            src="{{url_for('static',filename='images/' + image +'.jpg')}}"
+            class="img-fluid"
+            alt=""
+          />
+          <div class="rating">
+            <ul>
+              <li><span class="fa fa-star"></span></li>
+              <li><span class="fa fa-star"></span></li>
+              <li><span class="fa fa-star"></span></li>
+              <li><span class="fa fa-star"></span></li>
+              <li><span class="fa fa-star"></span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="destinations-info">
+          <div class="caption mb-lg-3">
+            <h4>{{place}}</h4>
+            <a href="{{url_for('booking')}}">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+{% endmacro %}

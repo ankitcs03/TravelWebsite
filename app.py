@@ -1,10 +1,16 @@
 from flask import Flask
 from flask import render_template
+from packages import packages_list
+from destinations import  destination_list
+from tourist_places import  tour_list
+
 app = Flask(__name__)
 
 @app.route("/")
 def homepage():
-    return render_template('index.html')
+    packages = packages_list()
+    destinations = destination_list()
+    return render_template('index.html', packages=packages, destinations=destinations)
 
 @app.route("/about")
 def about():
@@ -12,11 +18,14 @@ def about():
 
 @app.route("/services")
 def services():
-    return render_template('services.html')
+    tours = tour_list()
+    return render_template('services.html', tours=tours)
 
 @app.route("/packages")
 def packages():
-    return render_template('packages.html')
+    packages = packages_list()
+    destinations = destination_list()
+    return render_template('packages.html', packages=packages, destinations=destinations)
 
 @app.route("/contact")
 def contact():
