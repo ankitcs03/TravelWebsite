@@ -1,3 +1,4 @@
+import  json
 from flask import Flask
 from flask import render_template
 from flask import  request, jsonify
@@ -44,6 +45,24 @@ def subscribe():
         with open("subscriber_list.txt", 'a') as fh:
             fh.write(email + "\n")
     return jsonify({"message": "Subscribe API called successfully!"})
+
+@app.route("/booking_confirmed", methods=["GET", "POST"])
+def booking_confirmed():
+    data = {}
+    if request.method == "POST":
+        data['name'] = request.form.get("Name")
+        data['email'] = request.form.get("Email")
+        data['phone'] = request.form.get("Phone")
+        data['date'] = request.form.get("Date")
+        data['adults'] = request.form.get("Adults")
+        data['kids'] = request.form.get("Kids")
+        data['message'] = request.form.get("Message")
+
+        with open("booking_list.txt", 'a') as fh:
+            json.dump(data, fh)
+            fh.write("\n")
+
+    return jsonify({"message": "Booking completed successfully!"})
 
 @app.route("/test")
 def test():

@@ -19,10 +19,11 @@
         <div class="contact-grids">
           <div class="row">
             <div class="col-lg-7 contact-left-form">
-              <form  method="get" class="row" id="bookform">
+              <form action="#" method="post" class="row" id="bookform">
                 <div class="col-sm-6 form-group contact-forms">
                   <input
                     type="text"
+					name="Name"
                     class="form-control"
                     placeholder="Name"
                     required=""
@@ -33,6 +34,7 @@
                     type="email"
                     class="form-control"
                     placeholder="Email"
+					name="Email"
                     required=""
                   />
                 </div>
@@ -41,6 +43,7 @@
                     type="text"
                     class="form-control"
                     placeholder="Phone"
+					name="Phone"
                     required=""
                   />
                 </div>
@@ -49,33 +52,33 @@
                     type="text"
                     class="form-control"
                     placeholder="Date"
+					name="Date"
                     required=""
                   />
                 </div>
                 <div class="col-sm-6 form-group contact-forms">
-                  <select class="form-control" id="adults">
-                    <option>Adults</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5 or more</option>
-                  </select>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Adults"
+					name="Adults"
+                    required=""
+                  />
                 </div>
                 <div class="col-sm-6 form-group contact-forms">
-                  <select class="form-control" id="kids">
-                    <option>Kids</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5 or more</option>
-                  </select>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Kids"
+					name="Kids"
+                    required=""
+                  />
                 </div>
                 <div class="col-md-12 form-group contact-forms">
                   <textarea
                     class="form-control"
                     placeholder="Message"
+					name="Message"
                     rows="3"
                     required=""
                   ></textarea>
@@ -95,10 +98,25 @@
 				<script>
 					document.getElementById("submit-button").addEventListener("click", function(event) {
 					  event.preventDefault();
+					  const formData = new FormData(document.getElementById("bookform"));
 					  document.getElementById("bookform").style.display = "none";
 					  const successMessage = document.querySelector(".success-message");
 					  successMessage.style.cssText = "display: flex; align-items: center; justify-content: center; height: 100%;";
 					  document.getElementById("bookform").reset();
+
+					    $.ajax({
+							url: "/booking_confirmed",
+							type: "POST",
+							data: formData,
+							contentType: false,
+							processData: false,
+							success: function(response) {
+							  console.log("Booking confirmed");
+							},
+							error: function(error) {
+							  console.log("Error in booking confirmation");
+							}
+						  });
 					});
 
 					document.querySelector(".new-request-button").addEventListener("click", function(event) {
