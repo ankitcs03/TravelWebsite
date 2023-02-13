@@ -78,7 +78,7 @@
               By subscribing to our mailing list you will always get latest news
               and updates from us.
             </p>
-            <form action="#" method="post">
+            <form action="{{url_for('subscribe')}}" method="post" id="subscribeform">
               <input
                 type="email"
                 name="Email"
@@ -90,6 +90,55 @@
               </button>
               <div class="clearfix"></div>
             </form>
+
+			<div class="success-message" style="display: none">
+				  <span class="checkmark" style="color:green">&#x2713;</span>
+				  <p> You have been subscribed!</p>
+			</div>
+			  <div class="resubscribe-button" style="display: none">
+				  <button class="btn btn-block new-request-button" >Subscribe another Email!</button>
+			  </div>
+
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<script>
+			$(document).ready(function() {
+				$('form').submit(function(event) {
+					event.preventDefault();
+
+					var email = $('input[name="Email"]').val();
+
+					$.ajax({
+						url: "{{ url_for('subscribe') }}",
+						type: "POST",
+						data: {
+							Email: email
+						},
+						success: function(response) {
+							console.log("You got subscribe")
+							document.getElementById("subscribeform").style.display = "none";
+							const successMessage = document.querySelector(".success-message");
+							successMessage.style.cssText = "display: flex; align-items: center; ";
+							const successButton = document.querySelector(".resubscribe-button");
+							successButton.style.cssText = "display: block; align-items: center; ";
+							document.getElementById("subscribeform").reset();
+						},
+						error: function(error) {
+							console.log("Error in subscription")
+						}
+					});
+				});
+
+				$('.resubscribe-button').click(function() {
+						document.getElementById("subscribeform").style.display = "block";
+						const successMessage = document.querySelector(".success-message");
+						successMessage.style.cssText = "display: none;";
+						const successButton = document.querySelector(".resubscribe-button");
+						successButton.style.cssText = "display: none;";
+  				});
+
+			});
+
+			</script>
           </div>
         </div>
       </div>

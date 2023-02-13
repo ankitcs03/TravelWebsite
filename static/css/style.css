@@ -1184,6 +1184,20 @@ button.sent-butnn {
   border-radius: 0px;
   padding: 10px 20px;
 }
+
+button.new-request-button{
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: capitalize;
+  display: inline-block;
+  letter-spacing: 2px;
+  outline: none;
+  color: #fff;
+  background: #047ffc;
+  border-radius: 0px;
+  padding: 10px 20px;
+}
+
 .contact-left-form {
   padding: 3em;
   background: #fff;

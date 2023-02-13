@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from flask import  request, jsonify
 from packages import packages_list
 from destinations import  destination_list
 from tourist_places import  tour_list
@@ -33,7 +34,16 @@ def contact():
 
 @app.route("/booking")
 def booking():
-    return render_template('booking.html')
+    image = request.args.get('image')
+    return render_template('booking.html', image=image)
+
+@app.route("/subscribe", methods=["GET", "POST"])
+def subscribe():
+    if request.method == "POST":
+        email = request.form.get("Email")
+        with open("subscriber_list.txt", 'a') as fh:
+            fh.write(email + "\n")
+    return jsonify({"message": "Subscribe API called successfully!"})
 
 @app.route("/test")
 def test():

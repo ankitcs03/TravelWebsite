@@ -19,7 +19,7 @@
         <div class="contact-grids">
           <div class="row">
             <div class="col-lg-7 contact-left-form">
-              <form action="#" method="post" class="row">
+              <form  method="get" class="row" id="bookform">
                 <div class="col-sm-6 form-group contact-forms">
                   <input
                     type="text"
@@ -81,18 +81,47 @@
                   ></textarea>
                 </div>
                 <div class="col-md-12 booking-button">
-                  <button class="btn btn-block sent-butnn">Book Now</button>
+                  <button class="btn btn-block sent-butnn" id="submit-button">Book Now</button>
                 </div>
               </form>
+
+				<div class="success-message" style="display: none">
+					<div style="display:block">
+					  <span class="checkmark">&#x2713;</span>
+					  <p>Your booking has been received!</p>
+					  <button class="btn btn-block new-request-button" >Raise a new tour request</button>
+					</div>
+				</div>
+				<script>
+					document.getElementById("submit-button").addEventListener("click", function(event) {
+					  event.preventDefault();
+					  document.getElementById("bookform").style.display = "none";
+					  const successMessage = document.querySelector(".success-message");
+					  successMessage.style.cssText = "display: flex; align-items: center; justify-content: center; height: 100%;";
+					  document.getElementById("bookform").reset();
+					});
+
+					document.querySelector(".new-request-button").addEventListener("click", function(event) {
+					  event.preventDefault();
+					document.getElementById("bookform").style.display = "flex";
+					document.querySelector(".success-message").style.display = "none";
+					});
+					</script>
+
             </div>
             <div class="col-lg-5 contact-right pl-lg-5">
               <!---728x90--->
               <div class="image-tour position-relative">
-                <img
-                  src="{{url_for('static',filename='images/banner1.jpg')}}"
-                  alt=""
-                  class="img-fluid"
-                />
+
+				  {% if image is not none %}
+					  <img
+					  src="{{url_for('static',filename='images/' + image + '.jpg')}}"
+					  alt=""
+					  class="img-fluid"
+					/>
+				  {% else %}
+				  	<img src="{{url_for('static',filename='images/banner1.jpg')}}" alt="" class="img-fluid"/>
+				  {% endif %}
                 <p>
                   <span class="fa fa-tags"></span> <span>20&#8377; - 15% off</span>
                 </p>
