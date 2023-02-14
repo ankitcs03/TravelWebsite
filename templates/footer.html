@@ -91,7 +91,7 @@
               <div class="clearfix"></div>
             </form>
 
-			<div class="success-message" style="display: none">
+			<div class="subscription-success-message" style="display: none">
 				  <span class="checkmark" style="color:green">&#x2713;</span>
 				  <p> You have been subscribed!</p>
 			</div>
@@ -102,7 +102,7 @@
 			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 			<script>
 			$(document).ready(function() {
-				$('form').submit(function(event) {
+				$('#subscribeform').submit(function(event) {
 					event.preventDefault();
 
 					var email = $('input[name="Email"]').val();
@@ -116,7 +116,7 @@
 						success: function(response) {
 							console.log("You got subscribe")
 							document.getElementById("subscribeform").style.display = "none";
-							const successMessage = document.querySelector(".success-message");
+							const successMessage = document.querySelector(".subscription-success-message");
 							successMessage.style.cssText = "display: flex; align-items: center; ";
 							const successButton = document.querySelector(".resubscribe-button");
 							successButton.style.cssText = "display: block; align-items: center; ";
@@ -130,7 +130,7 @@
 
 				$('.resubscribe-button').click(function() {
 						document.getElementById("subscribeform").style.display = "block";
-						const successMessage = document.querySelector(".success-message");
+						const successMessage = document.querySelector(".subscription-success-message");
 						successMessage.style.cssText = "display: none;";
 						const successButton = document.querySelector(".resubscribe-button");
 						successButton.style.cssText = "display: none;";
